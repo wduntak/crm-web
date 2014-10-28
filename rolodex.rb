@@ -1,4 +1,5 @@
 class Rolodex
+  
   attr_reader :contacts
 
   def initialize
@@ -11,4 +12,5 @@ class Rolodex
     @contacts << contact
     @id += 1
   end
+
 end
