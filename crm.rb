@@ -6,16 +6,16 @@ $rolodex = Rolodex.new
 
 #routes
 get '/' do
-	@crm_app_name = "My CRM"
-	erb :index
+	@crm_app_name = "The Rolodex"
+	erb :index, :layout => :layout
 end
 
 get "/contacts" do
-  erb :contacts
+  erb :contacts, :layout => :layout
 end
 
 get '/contacts/new' do
-	erb :new_contact
+	erb :new_contact, :layout => :layout
 end
 
 post '/contacts' do
