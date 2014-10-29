@@ -17,17 +17,11 @@ a {
 	font-family: 'Oswald', sans-serif;
 	font-size: 18pt;
 	text-decoration: none;
-}
-
-a:active {
-	color: red;
+	color: white;
 }
 
 a:hover {
 	color: red;
-}
-a:visited {
-	color: white;
 }
 
 nav {
@@ -78,9 +72,17 @@ footer {
     outline: none;
 }
 
+.noBullet {
+	list-style-type: none
+}
+
 nav li {
 	display: inline;
 	padding-left:30px;
 	padding-right:30px;
+}
+
+.letter {
+	font-size: 20pt;
 }
 
