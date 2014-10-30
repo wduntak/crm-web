@@ -4,12 +4,14 @@ require 'sinatra'
 
 $rolodex = Rolodex.new
 
+$rolodex.add_contact(Contact.new("Johnny", "Bravo", "johnny@bitmakerlabs.com", "Rockstar"))
+
 #routes
 get '/' do
 	erb :index, :layout => :layout
 end
 
-get "/contacts" do
+get '/contacts' do
   erb :contacts, :layout => :layout
 end
 
@@ -22,3 +24,10 @@ post '/contacts' do
 	$rolodex.add_contact(new_contact)
 	redirect to('/contacts')
 end
+
+get "/contacts/1000" do
+  @contact = $rolodex.find(1000)
+  erb :show_contact, :layout => :layout
+end
+
+
