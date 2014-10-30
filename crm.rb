@@ -25,8 +25,8 @@ post '/contacts' do
 	redirect to('/contacts')
 end
 
-get "/contacts/:id" do
-  @contact = @@rolodex.find(params[:id].to_i)
+get '/contacts/:id' do
+  @contact = $rolodex.find(params[:id].to_i)
   if @contact
     erb :show_contact, :layout => :layout
   else
