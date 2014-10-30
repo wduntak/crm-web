@@ -26,8 +26,12 @@ post '/contacts' do
 end
 
 get "/contacts/:id" do
-  @contact = $rolodex.find(params[:id].to_i)
-  erb :show_contact, :layout => :layout
+  @contact = @@rolodex.find(params[:id].to_i)
+  if @contact
+    erb :show_contact, :layout => :layout
+  else
+    raise Sinatra::NotFound
+  end
 end
 
 
