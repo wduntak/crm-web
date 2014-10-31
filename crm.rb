@@ -29,7 +29,8 @@ end
 
 #Route to Contact List
 get '/contacts' do
-  erb :contacts, :layout => :layout
+	@contacts = Contact.all
+	erb :contacts, :layout => :layout
 end
 
 #Route to Add Contact
@@ -44,8 +45,12 @@ end
 
 #Post New Contact to Contacts
 post '/contacts' do
-	new_contact = Contact.create(params[:first_name], params[:last_name], params[:email], params[:note])
-	$rolodex.add_contact(new_contact)
+	contact = Contact.create(
+		:first_name => params[:first_name],
+		:last_name => params[:last_name],
+		:email => params[:email],
+		:note => params[:note]
+		)
 	redirect to('/contacts')
 end
 
