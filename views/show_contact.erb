@@ -6,6 +6,9 @@
 <p><strong>Note:</strong></p>
 <p><%= @contact.note %></p>
 <br/>
+<p><strong>ID Number:</strong></p>
+<p><%= @contact.id %></p>
+<br/>
 
 <form action="/contacts/<%= @contact.id %>" method="post">
   <input type="hidden" name="_method" value="delete">

@@ -1,8 +1,26 @@
 require_relative 'rolodex'
-require_relative 'contact'
+
 require 'sinatra'
+require 'data_mapper'
+
+DataMapper.setup(:default, "sqlite3:database.sqlite3")
+
+class Contact
+	include DataMapper::Resource
+
+	property :id, Serial
+	property :first_name, String
+	property :last_name, String
+	property :email, String
+	property :note, String
+end
+
+DataMapper.finalize
+DataMapper.auto_upgrade!
 
 $rolodex = Rolodex.new
+
+#Routes:
 
 #Route to Index
 get '/' do
@@ -19,9 +37,14 @@ get '/contacts/new' do
 	erb :new_contact, :layout => :layout
 end
 
+#Route to Search Contact
+get '/contacts/search' do
+	erb :search, :layout => :layout
+end
+
 #Post New Contact to Contacts
 post '/contacts' do
-	new_contact = Contact.new(params[:first_name], params[:last_name], params[:email], params[:note])
+	new_contact = Contact.create(params[:first_name], params[:last_name], params[:email], params[:note])
 	$rolodex.add_contact(new_contact)
 	redirect to('/contacts')
 end
