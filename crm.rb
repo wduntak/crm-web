@@ -4,27 +4,29 @@ require 'sinatra'
 
 $rolodex = Rolodex.new
 
-$rolodex.add_contact(Contact.new("Johnny", "Bravo", "johnny@bitmakerlabs.com", "Rockstar"))
-
-#routes
+#Route to Index
 get '/' do
 	erb :index, :layout => :layout
 end
 
+#Route to Contact List
 get '/contacts' do
   erb :contacts, :layout => :layout
 end
 
+#Route to Add Contact
 get '/contacts/new' do
 	erb :new_contact, :layout => :layout
 end
 
+#Post New Contact to Contacts
 post '/contacts' do
 	new_contact = Contact.new(params[:first_name], params[:last_name], params[:email], params[:note])
 	$rolodex.add_contact(new_contact)
 	redirect to('/contacts')
 end
 
+#Route to Contact information
 get '/contacts/:id' do
   @contact = $rolodex.find(params[:id].to_i)
   if @contact
@@ -34,6 +36,7 @@ get '/contacts/:id' do
   end
 end
 
+#Display to Contact information
 put '/contacts/:id' do
   @contact = $rolodex.find(params[:id].to_i)
   if @contact
@@ -48,6 +51,7 @@ put '/contacts/:id' do
   end
 end
 
+#Get Contact ID to edit
 get '/contacts/:id/edit' do
   @contact = $rolodex.find(params[:id].to_i)
   if @contact
@@ -57,6 +61,7 @@ get '/contacts/:id/edit' do
   end
 end
 
+#Get Contact ID to Delete
 delete "/contacts/:id" do
   @contact = $rolodex.find(params[:id].to_i)
   if @contact
@@ -65,4 +70,5 @@ delete "/contacts/:id" do
   else
     raise Sinatra::NotFound
   end
+end
 

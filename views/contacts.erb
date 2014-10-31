@@ -1,8 +1,10 @@
 <h1>All Contacts</h1>
-
+<br/>
 <ul class="noBullet">
 <% $rolodex.contacts.each do |contact| %>
-  		<li><%= contact.last_name %>, <%= contact.first_name %> </li>
+	<a href = "/contacts/<%= contact.id %>">
+  	<li><%= contact.last_name %>, <%= contact.first_name %> </li>
+  	</a>
 <% end %>
 </ul>
 
