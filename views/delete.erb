@@ -1,0 +1,14 @@
+<br/>
+<br/>
+<ul class="noBullet">
+	<center>
+	<table>
+		<% @contacts.each do |contact| %>
+		<tr>
+	  		<td><%= contact.first_name %> <%= contact.last_name %> </td>
+	  		<td>Delete</td>
+  		<tr>
+<% end %>
+</table>
+</center>
+</ul>
