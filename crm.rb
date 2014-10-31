@@ -56,7 +56,7 @@ end
 
 #Route to Contact information
 get '/contacts/:id' do
-  @contact = $rolodex.find(params[:id].to_i)
+  @contact = Contact.get(params[:id].to_i)
   if @contact
     erb :show_contact, :layout => :layout
   else
